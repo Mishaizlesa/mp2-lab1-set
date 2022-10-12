@@ -41,6 +41,9 @@ int TSet::IsMember(const int Elem) const // элемент множества?
 
 void TSet::InsElem(const int Elem) // включение элемента множества
 {
+    if (Elem < 0 || Elem >= MaxPower)
+           throw std::out_of_range("invalid index");
+
     BitField.SetBit(Elem);
 }
 
