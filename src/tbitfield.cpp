@@ -50,8 +50,12 @@ int TBitField::GetLength(void) const // получить длину (к-во б�
 
 void TBitField::SetBit(const int n) // установить бит
 {
-    if (n<0 || n>BitLen)throw "error";
-    pMem[GetMemIndex(n)]|=GetMemMask(n);
+    if (n < 0 || n >= BitLen)
+            throw std::out_of_range("invalid index");
+
+    int i = GetMemIndex(n);
+    TELEM mask = GetMemMask(n);
+    pMem[i] |= (mask);
 }
 
 void TBitField::ClrBit(const int n) // очистить бит
