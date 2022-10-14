@@ -79,8 +79,10 @@ TSet TSet::operator+(const TSet &s) // объединение
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
-    TSet tmp(*this);
-    tmp.InsElem(Elem);
+    if (Elem < 0 || Elem >= MaxPower)
+        throw std::out_of_range("invalid index");
+    TBitField tmp = BitField;
+    tmp.SetBit(Elem);
     return tmp;
 }
 
