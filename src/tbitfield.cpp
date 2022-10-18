@@ -137,14 +137,19 @@ TBitField TBitField::operator~(void) // отрицание
 
 // ввод/вывод
 
-istream &operator>>(istream &istr, TBitField &bf) // ввод
-{
-    for(int i=0;i<bf.MemLen;++i) istr>>bf.pMem[i];
+istream &operator>>(istream &istr, TBitField &bf){
+    string str;
+    istr >> str;
+    for (int i = 0; i < bf.BitLen; i++){
+        if(str[i] - '0')
+            bf.SetBit(i);
+    }
     return istr;
 }
 
-ostream &operator<<(ostream &ostr, const TBitField &bf) // вывод
-{
-    for(int i=0;i<bf.MemLen;++i) ostr<<bf.pMem[i];
+ostream &operator<<(ostream &ostr, const TBitField &bf){
+    for (int i = 0; i < bf.BitLen; i++){
+        ostr << bf.GetBit(i);
+    }
     return ostr;
 }
