@@ -105,20 +105,11 @@ TSet TSet::operator~(void) // дополнение
 
 // перегрузка ввода/вывода
 
-istream &operator>>(istream &istr, TBitField &bf) // ввод
-{
-    string str;
-    istr >> str;
-    for (int i=0;i < bf.BitLen;i++){
-        if(str[i]-'0')
-            bf.SetBit(i);
-    }
+istream &operator>>(istream &istr, TSet &s){
+    istr >> s.BitField;
     return istr;
 }
-
-ostream &operator<<(ostream &ostr, const TBitField &bf){
-    for (int i=0; i<bf.BitLen; i++){
-        ostr << bf.GetBit(i);
-    }
+ostream& operator<<(ostream &ostr, const TSet &s){
+    ostr << s.BitField;
     return ostr;
 }
